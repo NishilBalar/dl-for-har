@@ -75,7 +75,10 @@ def load_dataset(dataset, pred_type='actions', include_null=False):
         has_null = False
         class_names = ['monitored', 'non_monitored']
 
-    data = pd.read_csv(os.path.join('data/', dataset + '_data.csv'), sep=',', header=None, index_col=None)
+    # Get the current working directory
+    current_dir = os.getcwd()
+    #print(os.path.join(current_dir + '/data/', dataset + '_data.csv'))
+    data = pd.read_csv(os.path.join(current_dir + '/data/', dataset + '_data.csv'), sep=',', header=None, index_col=None)
     X, y = preprocess_data(data, dataset, pred_type, has_null, include_null)
 
     print(" ..from file {}".format(os.path.join('data/', dataset + '_data.csv')))
