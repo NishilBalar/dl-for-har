@@ -301,7 +301,8 @@ def train(train_features, train_labels, val_features, val_labels, network, optim
         class_weights = torch.from_numpy(
             compute_class_weight(None, classes=np.unique(train_labels + 1), y=train_labels + 1)).float()
         if config['loss'] == 'cross_entropy':
-            loss.weight = class_weights.cuda()
+            #loss.weight = class_weights.cuda()
+            loss.weight = None
 
     # initialize optimizer and loss
     opt, criterion = optimizer, loss
